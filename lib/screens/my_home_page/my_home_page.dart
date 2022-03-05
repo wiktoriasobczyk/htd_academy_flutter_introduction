@@ -24,10 +24,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final List<ListElement> elements = [];
   late Faker faker;
+  late String title;
 
   @override
   void initState() {
     faker = Faker();
+    title = widget.title;
     super.initState();
   }
 
@@ -41,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(title),
       ),
       body: ListView.builder(
         itemCount: elements.length,
@@ -55,8 +57,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 elements.remove(element);
               });
             },
-            onPrint: () {
-              print(element.title);
+            onTap: () {
+              setState(() {
+                title = '${element.title} ${element.subtitle}';
+              });
             },
           );
         },
