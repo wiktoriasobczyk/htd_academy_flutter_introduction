@@ -55,6 +55,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 elements.remove(element);
               });
             },
+            onPrint: () {
+              print(element.title);
+            },
           );
         },
       ),
