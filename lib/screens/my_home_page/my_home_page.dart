@@ -45,25 +45,29 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: ListView.builder(
-        itemCount: elements.length,
-        itemBuilder: (context, int index) {
-          final ListElement element = elements[index];
-          return MyFistWidget(
-            title: element.title,
-            subtitle: element.subtitle,
-            onRemove: () {
-              setState(() {
-                elements.remove(element);
-              });
-            },
-            onTap: () {
-              setState(() {
-                title = '${element.title} ${element.subtitle}';
-              });
-            },
-          );
-        },
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        child: ListView.builder(
+          key: ValueKey(elements.length),
+          itemCount: elements.length,
+          itemBuilder: (context, int index) {
+            final ListElement element = elements[index];
+            return MyFistWidget(
+              title: element.title,
+              subtitle: element.subtitle,
+              onRemove: () {
+                setState(() {
+                  elements.remove(element);
+                });
+              },
+              onTap: () {
+                setState(() {
+                  title = '${element.title} ${element.subtitle}';
+                });
+              },
+            );
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _addElement,
