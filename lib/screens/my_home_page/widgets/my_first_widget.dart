@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
 class MyFistWidget extends StatelessWidget {
-  const MyFistWidget({Key? key}) : super(key: key);
+  final String title;
+  const MyFistWidget({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const ListTile(
-      title: Text('My first widget'),
+    return ListTile(
+      title: Text(title),
     );
   }
 }
