@@ -1,3 +1,4 @@
+import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_academy/screens/my_home_page/widgets/my_first_widget.dart';
 
@@ -25,10 +26,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
+    final Faker faker = Faker();
+
     elements.addAll([
-      ListElement('My custom widget', 'Flutter is awesome'),
-      ListElement('My custom widget 2', 'Flutter is awesome 2'),
-      ListElement('My custom widget 3', 'Flutter is awesome 3'),
+      ListElement(faker.person.name(), faker.internet.email()),
+      ListElement(faker.person.name(), faker.internet.email()),
+      ListElement(faker.person.name(), faker.internet.email()),
     ]);
     super.initState();
   }
