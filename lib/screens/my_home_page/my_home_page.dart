@@ -47,7 +47,15 @@ class _MyHomePageState extends State<MyHomePage> {
         itemCount: elements.length,
         itemBuilder: (context, int index) {
           final ListElement element = elements[index];
-          return MyFistWidget(title: element.title, subtitle: element.subtitle);
+          return MyFistWidget(
+            title: element.title,
+            subtitle: element.subtitle,
+            onRemove: () {
+              setState(() {
+                elements.remove(element);
+              });
+            },
+          );
         },
       ),
       floatingActionButton: FloatingActionButton(
