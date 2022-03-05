@@ -20,6 +20,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: const Center(
         child: MyFistWidget(
           title: 'My custom widget',
+          subtitle: 'Flutter is awesome',
         ),
       ),
     );
