@@ -39,12 +39,13 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: ListView(
-        children: [
-          for (final element in elements)
-            MyFistWidget(title: element.title, subtitle: element.subtitle)
-        ],
-      ),
+      body: ListView.builder(
+          itemCount: elements.length,
+          itemBuilder: (context, int index) {
+            final ListElement element = elements[index];
+            return MyFistWidget(
+                title: element.title, subtitle: element.subtitle);
+          }),
     );
   }
 }
