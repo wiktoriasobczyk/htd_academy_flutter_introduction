@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_academy/screens/my_home_page/widgets/my_first_widget.dart';
 
+class ListElement {
+  final String title;
+  final String subtitle;
+
+  ListElement(
+    this.title,
+    this.subtitle,
+  );
+}
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
@@ -11,6 +21,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final List<ListElement> elements = [];
+
+  @override
+  void initState() {
+    elements.addAll([
+      ListElement('My custom widget', 'Flutter is awesome'),
+      ListElement('My custom widget 2', 'Flutter is awesome 2'),
+      ListElement('My custom widget 3', 'Flutter is awesome 3'),
+    ]);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,11 +40,9 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: ListView(
-        children: const [
-          MyFistWidget(
-            title: 'My custom widget',
-            subtitle: 'Flutter is awesome',
-          ),
+        children: [
+          for (final element in elements)
+            MyFistWidget(title: element.title, subtitle: element.subtitle)
         ],
       ),
     );
