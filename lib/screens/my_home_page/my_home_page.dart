@@ -17,11 +17,13 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: const Center(
-        child: MyFistWidget(
-          title: 'My custom widget',
-          subtitle: 'Flutter is awesome',
-        ),
+      body: ListView(
+        children: const [
+          MyFistWidget(
+            title: 'My custom widget',
+            subtitle: 'Flutter is awesome',
+          ),
+        ],
       ),
     );
   }
