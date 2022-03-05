@@ -23,17 +23,18 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<ListElement> elements = [];
+  late Faker faker;
 
   @override
   void initState() {
-    final Faker faker = Faker();
-
-    elements.addAll([
-      ListElement(faker.person.name(), faker.internet.email()),
-      ListElement(faker.person.name(), faker.internet.email()),
-      ListElement(faker.person.name(), faker.internet.email()),
-    ]);
+    faker = Faker();
     super.initState();
+  }
+
+  void _addElement() {
+    setState(() {
+      elements.add(ListElement(faker.person.name(), faker.internet.email()));
+    });
   }
 
   @override
@@ -43,12 +44,16 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: ListView.builder(
-          itemCount: elements.length,
-          itemBuilder: (context, int index) {
-            final ListElement element = elements[index];
-            return MyFistWidget(
-                title: element.title, subtitle: element.subtitle);
-          }),
+        itemCount: elements.length,
+        itemBuilder: (context, int index) {
+          final ListElement element = elements[index];
+          return MyFistWidget(title: element.title, subtitle: element.subtitle);
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _addElement,
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
